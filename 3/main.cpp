@@ -37,7 +37,7 @@ void main() {
     std::pair<int, int> cur_house {0, 0};
     std::pair<int, int> cur_house_robot {0, 0};
     std::map<std::pair<int, int>, int> city_map;
-    // adds a new house to the map, or gives another present to an existing one 
+    // adds a new house to the map
     auto give_present = [&city_map] (std::pair<int, int>& cur_house) {
         if (city_map.find(cur_house) == city_map.end()) 
             city_map.insert({cur_house, 1});
