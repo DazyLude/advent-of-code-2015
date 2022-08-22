@@ -6,3 +6,6 @@
 .vs
 .gitignore
 .vscode
+*.sln
+*.vc*
+*.dll
