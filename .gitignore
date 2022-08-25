@@ -8,3 +8,4 @@
 .vscode
 *.dll
 x64/
+input

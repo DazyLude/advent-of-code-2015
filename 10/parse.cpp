@@ -1,6 +1,9 @@
 #include <string>
+#include <string_view>
+#include <iostream>
 
 using std::string;
+using std::string_view;
 
 /// <summary>
 /// parses a string part surrounded by whitespaces, starting from beginning
@@ -9,7 +12,7 @@ using std::string;
 /// </summary>
 /// <param name="input">string to parse</param>
 /// <returns>parsed part</returns>
-string parse_word(string& input) {
+string parse_word(string_view& input) {
     string word;
     for (int i = 0; i < input.size(); ++i) {
         if (iswspace(input[i]) != 0) {
@@ -22,7 +25,7 @@ string parse_word(string& input) {
             word.push_back(input[i]);
         }
     }
-    input = "";
+    input = input.substr(input.size() - 1, input.size());
 exit:
     return word;
 };
@@ -33,13 +36,13 @@ exit:
 /// </summary>
 /// <param name="input">string to parse</param>
 /// <returns>parsed part</returns>
-string parse_until_changes(string& input) {
-    if (input.empty()) { return input; }
-    auto first_symbol = input.at(0);
+string parse_until_changes(string_view& input) {
+    if (input.empty()) { return ""; }
+    auto first_symbol = input[0];
     string word { first_symbol };
     for (int i = 1; i < input.size(); ++i) {
         if (input[i] != first_symbol) {
-            input = input.substr(i, input.size() - i);
+            input.remove_prefix(i);
             goto exit;
         }
         word.push_back(first_symbol);
